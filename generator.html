@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QR code generator</title>
+    <style>
+        #qrcode {
+            background: #aaa;
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generate QR codes below</h1>
+    <p>Text to be generated: <input type="text" name="qr-text"  /><button>Generate</button></p>
+    <div id="qrcode"></div>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="js/qrcode.js"></script>
+    <script>
+        const { clientWidth: width, clientHeight: height } = document.getElementById('qrcode');
+        console.log(width, height);
+        document.querySelector('button').addEventListener('click', () => {
+            const text = document.querySelector('[name="qr-text"]').value;
+            new QRCode(document.getElementById("qrcode"), {
+                text, width, height
+            });
+        });
+    </script>
+</body>
+</html>

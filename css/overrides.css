@@ -1,0 +1,65 @@
+:root {
+    --base-action-color: #4E7FFF;
+    --action-color: var(--base-action-color);
+    --page-background: linear-gradient(180deg, #F2F3F4 0%, #F9F9FA 75%, #FFFFFF 100%);
+    --header-border:
+        linear-gradient(to right, transparent 0%, transparent calc(100% / 6 - 1px),  #F2F3F4 calc(100% / 6 - 1px), #F2F3F4 calc(100% / 6 + 1px), transparent calc(100% / 6 + 1px),
+            transparent calc(200% / 6 - 1px),  #F2F3F4 calc(200% / 6 - 1px), #F2F3F4 calc(200% / 6 + 1px), transparent calc(200% / 6 + 1px),
+            transparent calc(300% / 6 - 1px),  #F2F3F4 calc(300% / 6 - 1px), #F2F3F4 calc(300% / 6 + 1px), transparent calc(300% / 6 + 1px),
+            transparent calc(400% / 6 - 1px),  #F2F3F4 calc(400% / 6 - 1px), #F2F3F4 calc(400% / 6 + 1px), transparent calc(400% / 6 + 1px),
+            transparent calc(500% / 6 - 1px),  #F2F3F4 calc(500% / 6 - 1px), #F2F3F4 calc(500% / 6 + 1px), transparent calc(500% / 6 + 1px)
+        ),
+        linear-gradient(to bottom, #F2F3F4 0%, #F2F3F4 calc(100% - 3px), var(--action-color) calc(100% - 3px));
+
+    --header-height: 3.75rem;
+    --base-icon-bg: #FFBE40;
+    --icon-bg: var(--base-icon-bg);
+
+    --base-icon-stroke: black;
+    --icon-stroke: var(--base-icon-stroke);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    min-height: 100%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    background: var(--page-background);
+}
+
+input {
+    font-size: 1rem;
+    padding: 0 1rem;
+    height: 3rem;
+    border-radius: 8px;
+    border: 1px solid #8A909B;
+    outline: none;
+}
+
+button {
+    border: none;
+    outline: none;
+    height: 3rem;
+}
+
+.hidden {
+    display: none;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin: 0;
+}

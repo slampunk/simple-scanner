@@ -1,0 +1,40 @@
+.controls {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background: black;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0.25s 0s, opacity 0.25s;
+}
+
+.video-toggle:checked ~ main .controls {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.25s;
+}
+
+.controls video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.controls label[for="videoToggle"] {
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    top: 1rem;
+    right: 1rem;
+    border: 2px solid white;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, transparent 0%, transparent 40%, black 40%),
+        linear-gradient(-45deg, transparent 0, transparent calc(50% - 2px), white calc(50% - 1px) ,white calc(50% + 1px), transparent calc(50% + 2px)),
+        linear-gradient(45deg, transparent 0, transparent calc(50% - 2px), white calc(50% - 1px) ,white calc(50% + 1px), transparent calc(50% + 2px));
+}
