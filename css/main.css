@@ -74,6 +74,25 @@ main {
 
 .dropdown {
     position: relative;
+}
+
+form > .dropdown:nth-of-type(1) {
+    z-index: 5;
+}
+
+form > .dropdown:nth-of-type(2) {
+    z-index: 4;
+}
+
+form > .dropdown:nth-of-type(3) {
+    z-index: 3;
+}
+
+form > .dropdown:nth-of-type(4) {
+    z-index: 2;
+}
+
+form > .dropdown:nth-of-type(1) {
     z-index: 1;
 }
 
@@ -196,6 +215,11 @@ form:has(input:invalid) button[type="submit"] {
     content: 'Select one';
 }
 
+.dropdown label[for=provinceDropdown]::before {
+    font-weight: 300;
+    content: 'Select a province';
+}
+
 
 form:has(input[id="ackermans"]:checked) {
     .dropdown label[for=channelDropdown]::before {
@@ -250,4 +274,48 @@ form:has(input[id="other"]:checked) {
     background: white;
     bottom: 0.3125rem;
     right: 0.3125rem;
+}
+
+.optional[data-selector="province"] {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+    > label {
+        margin-bottom: 0.5rem;
+    }
+}
+
+.optional[data-selector="province"] > div {
+    width: 60%;
+    max-width: calc(100% - 6rem);
+}
+
+.location-button {
+    width: 2rem;
+    height: 1.875rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    background: radial-gradient(
+        circle at 50% 25%,
+        white 0,
+        white 0.25rem,
+        transparent 0.25rem
+    ),conic-gradient(
+        from -30deg at 50% 1.5625rem,
+        black 0,
+        black 60deg,
+        transparent 60deg
+    ),radial-gradient(
+        75% 25% at 50% 75%,
+        white 0,
+        white calc(50% - 4px),
+        transparent calc(50% - 4px)
+    ),
+    radial-gradient(
+        75% 25% at 50% 75%,
+        black 0%,
+        black 50%,
+        transparent 50%
+    )
 }

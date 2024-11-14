@@ -1,11 +1,8 @@
 class Scanner {
     targetElement = null;
-    barcodeScanner = new BarcodeDetector({
-        formats: ['qr_code']
-    });
     videoElement = document.querySelector('video');
     isScanning = false;
-    worker = new Worker('js/scannerWorker.js?2');
+    worker = new Worker('js/scannerWorker.js');
     stream = null;
 
     constructor() {
