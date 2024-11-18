@@ -21,6 +21,7 @@
         const { clientWidth: width, clientHeight: height } = document.getElementById('qrcode');
         console.log(width, height);
         document.querySelector('button').addEventListener('click', () => {
+            document.getElementById("qrcode").innerHTML = '';
             const text = document.querySelector('[name="qr-text"]').value;
             new QRCode(document.getElementById("qrcode"), {
                 text, width, height
