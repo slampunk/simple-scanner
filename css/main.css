@@ -61,6 +61,10 @@ main {
                 opacity: 1;
             }
         }
+
+        .optional[data-selector="province"] > label {
+            opacity: 1;
+        }
     }
 
     circle {
@@ -74,7 +78,28 @@ main {
 
 .dropdown {
     position: relative;
-    z-index: 1;
+}
+
+form {
+    > .dropdown:nth-of-type(1), > .optional:nth-of-type(1) {
+        z-index: 5;
+    }
+
+    > .dropdown:nth-of-type(2), > .optional:nth-of-type(2) {
+        z-index: 4;
+    }
+
+    > .dropdown:nth-of-type(3), > .optional:nth-of-type(3) {
+        z-index: 3;
+    }
+
+    > .dropdown:nth-of-type(4), > .optional:nth-of-type(4) {
+        z-index: 2;
+    }
+
+    > .dropdown:nth-of-type(5), > .optional:nth-of-type(5) {
+        z-index: 1;
+    }
 }
 
 .dropdown-body, .optional {
@@ -92,9 +117,12 @@ main {
 }
 
 .dropdown-body ul, .optional-body {
-    overflow: hidden;
     opacity: 0;
     transition: opacity 0.25s;
+}
+
+.dropdown-body ul, .optional-body ul {
+    overflow: hidden;
 }
 
 .dropdown-body ul {
@@ -196,6 +224,11 @@ form:has(input:invalid) button[type="submit"] {
     content: 'Select one';
 }
 
+.dropdown label[for=provinceDropdown]::before {
+    font-weight: 300;
+    content: 'Select a province';
+}
+
 
 form:has(input[id="ackermans"]:checked) {
     .dropdown label[for=channelDropdown]::before {
@@ -227,6 +260,46 @@ form:has(input[id="other"]:checked) {
     }
 }
 
+div[data-selector=province]:has(input[type=radio]:checked) {
+    label[for=provinceDropdown]:has(~ div input[id=gauteng]:checked)::before {
+         content: 'Gauteng';
+    }
+
+    label[for=provinceDropdown]:has(~ div input[id=limpopo]:checked)::before {
+        content: 'Limpopo';
+    }
+
+    label[for=provinceDropdown]:has(~ div input[id=free-state]:checked)::before {
+        content: 'Free State';
+    }
+
+    label[for=provinceDropdown]:has(~ div input[id=north-west]:checked)::before {
+        content: 'North West';
+    }
+
+    label[for=provinceDropdown]:has(~ div input[id=kzn]:checked)::before {
+        content: 'KwaZulu-Natal';
+    }
+}
+
+div[data-selector=store]:has(input[type=radio]:checked) {
+    label[for=storeDropdown]:has(~ div input[id=maponya]:checked)::before {
+         content: 'Maponya Mall';
+    }
+
+    label[for=storeDropdown]:has(~ div input[id=mams-mall]:checked)::before {
+        content: 'Mams Mall';
+    }
+
+    label[for=storeDropdown]:has(~ div input[id=mall-of-africa]:checked)::before {
+        content: 'Mall of Africa';
+    }
+
+    label[for=storeDropdown]:has(~ div input[id=randburg-cresta]:checked)::before {
+        content: 'Randburg Cresta';
+    }
+}
+
 .qr-code-button {
     border: none;
     width: 2rem;
@@ -250,4 +323,83 @@ form:has(input[id="other"]:checked) {
     background: white;
     bottom: 0.3125rem;
     right: 0.3125rem;
+}
+
+.optional[data-selector="province"] {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 1rem;
+
+    > label {
+        margin-bottom: 0.5rem;
+        opacity: 0;
+        transition: opacity 0.25s;
+    }
+}
+
+.optional[data-selector="province"] > div {
+    flex-grow: 1;
+}
+
+.location-button {
+    width: 2rem;
+    height: 1.875rem;
+    background: radial-gradient(
+        75% 25% at 50% 75%,
+        white 0,
+        white calc(50% - 4px),
+        transparent calc(50% - 4px)
+    ),
+    radial-gradient(
+        75% 25% at 50% 75%,
+        black 0%,
+        black 50%,
+        transparent 50%
+    );
+    position: relative;
+}
+
+.location-button::before {
+    content: '';
+    position: absolute;
+    width: 2rem;
+    height: 1.875rem;
+    background: radial-gradient(
+        circle at 50% 25%,
+        white 0,
+        white 0.25rem,
+        transparent 0.25rem
+    ),conic-gradient(
+        from -30deg at 50% 1.5625rem,
+        black 0,
+        black 60deg,
+        transparent 60deg
+    );
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    transform-origin: 50% 100%;
+}
+
+.location-button.location-toggled::before {
+    animation: locationActive 2s infinite ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes locationActive {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-30deg);
+    }
+
+    50% {
+        transform: rotate(30deg);
+    }
+
+    75% {
+        transform: rotate(0deg);
+    }
 }
