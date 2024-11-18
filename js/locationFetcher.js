@@ -1,3 +1,5 @@
+import { getDistanceBetweenCoordinates } from "./utils.js";
+
 const LOCATION_OPTIONS = {
     enableHighAccuracy: true,
     timeout: 5000
@@ -39,6 +41,7 @@ class LocationFetcher {
 
     constructor() {
         document.getElementById('locationToggle').addEventListener('change', this.handleLocationToggle);
+        [ ...document.querySelectorAll('input[name=channel]') ].forEach(input => input.addEventListener('input', this.handleChannelChange));
     }
 
     handleLocationToggle = e => {
@@ -46,14 +49,49 @@ class LocationFetcher {
             return;
         }
 
+        document.querySelector('.location-button').classList.add('location-toggled');
+
         navigator.geolocation.getCurrentPosition(this.handleLocation, this.handleError, LOCATION_OPTIONS);
     }
 
     handleLocation = ({ coords }) => {
-        console.log(coords);
+        const closestAckermans = ACKERMANS_LOCATIONS
+            .map(l => ({ ...l, distance: getDistanceBetweenCoordinates(coords, l) }))
+            .sort((a, b) => a.distance - b.distance)[0];
+
+        const provinceInput = [ ...document.querySelectorAll('input[name=province]') ]
+            .find(input => input.value === closestAckermans.province);
+        const storeInput = [ ...document.querySelectorAll('input[name=store]') ]
+            .find(input => input.value === closestAckermans.name);
+
+        if (provinceInput) {
+            provinceInput.checked = true;
+        }
+
+        if (storeInput) {
+            storeInput.checked = true;
+        }
+
+        document.querySelector('.location-button').classList.remove('location-toggled');
     }
 
-    handleError = err => console.error(err);
+    handleError = err => {
+        console.error(err);
+        document.querySelector('.location-button').classList.remove('location-toggled');
+    }
+
+    handleChannelChange = e => {
+        if (e.currentTarget.id === 'ackermans') {
+            [ ...document.querySelectorAll('[data-option="ackermans"] input[type=radio]')]
+                .forEach(input => input.setAttribute('required', true));
+            document.querySelector('input[name=isa-code]').setAttribute('required', true);
+        }
+        else {
+            [ ...document.querySelectorAll('[data-option="ackermans"] input[type=radio]')]
+                .forEach(input => input.removeAttribute('required'));
+                document.querySelector('input[name=isa-code]').removeAttribute('required', true);
+        }
+    }
 }
 
 const locationFetcher = new LocationFetcher();

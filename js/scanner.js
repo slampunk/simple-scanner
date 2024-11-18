@@ -2,7 +2,7 @@ class Scanner {
     targetElement = null;
     videoElement = document.querySelector('video');
     isScanning = false;
-    worker = new Worker('js/scannerWorker.js');
+    worker = new Worker('js/scannerWorker.js', { type: "module" });
     stream = null;
 
     constructor() {

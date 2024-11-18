@@ -44,12 +44,12 @@
                 </div>
             </div>
             <div class="optional" data-option="ackermans" data-selector="province">
-                <div class="dropdown optional-body" data-field="Where is this Ackermans located">
+                <div class="dropdown optional-body" data-field="Where is this Ackermans located?">
                     <input type="checkbox" id="provinceDropdown" class="hidden" />
                     <label for="provinceDropdown"></label>
                     <div class="dropdown-body">
                         <ul>
-                            <li><input type="radio" name="province" class="hidden" id="gauteng" value="Gauteng" required /> <label for="gauteng">Gauteng</label></li>
+                            <li><input type="radio" name="province" class="hidden" id="gauteng" value="Gauteng" /> <label for="gauteng">Gauteng</label></li>
                             <li><input type="radio" name="province" class="hidden" id="limpopo" value="Limpopo" /> <label for="limpopo">Limpopo</label></li>
                             <li><input type="radio" name="province" class="hidden" id="free-state" value="Free State" /> <label for="free-state">Free State</label></li>
                             <li><input type="radio" name="province" class="hidden" id="kzn" value="KwaZulu-Natal" /> <label for="kzn">KwaZulu-Natal</label></li>
@@ -59,7 +59,20 @@
                 </div>
                 <input type="checkbox" id="locationToggle" class="hidden" />
                 <label class="location-button" for="locationToggle"></label>
-                <label class="qr-code-button" for="videoToggle"></label>
+            </div>
+            <div class="optional" data-option="ackermans" data-selector="store">
+                <div class="dropdown optional-body" data-field="Which Ackermans store?" data-invalidtext="Please choose a province above">
+                    <input type="checkbox" id="storeDropdown" class="hidden" />
+                    <label for="storeDropdown"></label>
+                    <div class="dropdown-body">
+                        <ul>
+                            <li><input type="radio" name="store" class="hidden" id="maponya" value="Maponya Mall" /> <label for="maponya">Maponya Mall</label></li>
+                            <li><input type="radio" name="store" class="hidden" id="mams-mall" value="Mams Mall" /> <label for="mams-mall">Mams Mall</label></li>
+                            <li><input type="radio" name="store" class="hidden" id="mall-of-africa" value="Mall of Africa" /> <label for="mall-of-africa">Mall of Africa</label></li>
+                            <li><input type="radio" name="store" class="hidden" id="randburg-cresta" value="Randburg Cresta" /> <label for="randburg-cresta">Randburg Cresta</label></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div class="optional" data-option="ackermans">
                 <div class="optional-body">
