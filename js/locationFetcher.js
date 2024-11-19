@@ -42,6 +42,8 @@ class LocationFetcher {
     constructor() {
         document.getElementById('locationToggle').addEventListener('change', this.handleLocationToggle);
         [ ...document.querySelectorAll('input[name=channel]') ].forEach(input => input.addEventListener('input', this.handleChannelChange));
+        [ ...document.querySelectorAll('input[name=province]') ].forEach(input => input.addEventListener('input', this.handleProvinceChange));
+        [ ...document.querySelectorAll('input[name=store]') ].forEach(input => input.addEventListener('input', this.handleStoreChange));
     }
 
     handleLocationToggle = e => {
@@ -91,6 +93,16 @@ class LocationFetcher {
                 .forEach(input => input.removeAttribute('required'));
                 document.querySelector('input[name=isa-code]').removeAttribute('required', true);
         }
+
+        document.getElementById('channelDropdown').checked = false;
+    }
+
+    handleProvinceChange = e => {
+        document.getElementById('provinceDropdown').checked = false;
+    }
+
+    handleStoreChange = e => {
+        document.getElementById('storeDropdown').checked = false;
     }
 }
 
